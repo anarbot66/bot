@@ -1,0 +1,4 @@
+# Игнорируем файлы конфигурации и логи
+.env
+node_modules/
+npm-debug.log
