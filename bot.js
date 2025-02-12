@@ -42,6 +42,14 @@ bot.onText(/\/start/, (msg) => {
   });
 });
 
+// Добавление новой команды /justanincident
+bot.onText(/\/justanincident/, (msg) => {
+  const chatId = msg.chat.id;
+  
+  // Ответ на команду
+  bot.sendMessage(chatId, "nothing special, just an incident. заходи в polе!");
+});
+
 // Настроим Express на прослушивание порта
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
