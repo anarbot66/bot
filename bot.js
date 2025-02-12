@@ -3,14 +3,21 @@
 // Подключаем dotenv для работы с переменными окружения
 require('dotenv').config(); 
 
-// Подключаем TelegramBot
+// Подключаем TelegramBot и Express
 const TelegramBot = require('node-telegram-bot-api');
+const express = require('express');
 
 // Чтение токена из переменной окружения
 const token = process.env.TELEGRAM_BOT_TOKEN;
 
 // Создание экземпляра бота
 const bot = new TelegramBot(token, { polling: true });
+
+// Создаем Express приложение
+const app = express();
+
+// Указание порта для Render или локально (по умолчанию 3000)
+const PORT = process.env.PORT || 3000;
 
 // Обработка команды /start
 bot.onText(/\/start/, (msg) => {
@@ -33,4 +40,9 @@ bot.onText(/\/start/, (msg) => {
   bot.sendMessage(chatId, 'Привет! Я POLE, покажу тебе всю интересную статистику Формулы-1!', {
     reply_markup: keyboard
   });
+});
+
+// Настроим Express на прослушивание порта
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
 });
